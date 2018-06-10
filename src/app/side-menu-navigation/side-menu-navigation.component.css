@@ -1,0 +1,13 @@
+.example-container {
+    margin: 10px;
+    border: 1px solid #555;
+  }
+
+  .example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    background: rgba(255, 0, 0, 0.5);
+  }
+  
