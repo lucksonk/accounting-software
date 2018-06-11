@@ -39,6 +39,11 @@ export class PayrollComponent  {
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
+  selectRow(row) {
+    console.log(row);
+    console.log('### selected row ##');
+    this.router.navigateByUrl('/view-employee');
+  }
 
   btnClick= function () {
     this.router.navigateByUrl('/add-employee');

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { EmployeeService } from '../employee.service';
+
+import {Employee} from '../employee';
 
 @Component({
   selector: 'app-view-employee',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewEmployeeComponent implements OnInit {
 
-  constructor() { }
+  employee: Employee;
+
+  constructor(private route: ActivatedRoute,
+            private location: Location,
+            private employeeService: EmployeeService) { }
 
   ngOnInit() {
+    const data = +this.route.snapshot.paramMap.get('employee');
+    console.log(' *** data for employee');
+    console.log(data);
   }
 
 }
