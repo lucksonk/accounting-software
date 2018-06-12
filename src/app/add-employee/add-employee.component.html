@@ -1,47 +1,34 @@
 <form #employeeForm="ngForm" class="example-form">
 
-
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="First name" [(ngModel)]="employee.firstName" type="text" name="firstName">
+        <input matInput placeholder="First name" [(ngModel)]="employee.firstName" type="text" name="firstName">
     </mat-form-field>
-  <p>
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last name" [(ngModel)]="employee.lastName" type="text"  name="lastName">
+    <p>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last name" [(ngModel)]="employee.lastName" type="text" name="lastName">
         </mat-form-field>
 
-
         <mat-form-field>
-            <input matInput [matDatepicker]="dateOfBirthPicker"
-                  placeholder="Date Of Birth" [formControl]="date" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth">
+            <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Date Of Birth" [formControl]="date" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth">
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
-          </mat-form-field>
+        </mat-form-field>
 
-
-
-       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Income"
-            [(ngModel)]="employee.income"
-            [ngClass]="{'is-invalid': employeeIncome.errors && employeeIncome.touched}"
-            name="income"
-            #employeeIncome="ngModel"
-            required
-            appSalaryThresholdValidator>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Income" [(ngModel)]="employee.income" [ngClass]="{'is-invalid': employeeIncome.errors && employeeIncome.touched}" name="income" #employeeIncome="ngModel" required appSalaryThresholdValidator>
         </mat-form-field>
 
         <div *ngIf='employeeIncome.invalid'>
             <font color="red">Income must be  greater than 0 and less than 1 000 000</font>
-       </div>
+        </div>
 
-  <mat-form-field class="example-full-width">
-      <input matInput placeholder="Country" aria-label="Country"
-              [matAutocomplete]="auto" [formControl]="countryCtrl" [(ngModel)]="employee.country" name="country">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let country of filteredCountries | async" [value]="country.name">
-          <span>{{ country.name }}</span>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="button" [disabled]="employeeIncome.invalid"
-        (click)="addEmployee();">Add Employee</button>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl" [(ngModel)]="employee.country" name="country">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let country of filteredCountries | async" [value]="country.name">
+                    <span>{{ country.name }}</span>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="button" [disabled]="employeeIncome.invalid" (click)="addEmployee();">Add Employee</button>
 </form>

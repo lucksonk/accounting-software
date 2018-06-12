@@ -1,77 +1,68 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
         <mat-card>
-          <button mat-button  (click)="drawer.toggle()">Payments</button>
+            <button mat-button (click)="drawer.toggle()">Payments</button>
         </mat-card>
         <mat-divider></mat-divider>
         <mat-card>
             <button mat-button (click)="btnClick();">Add Employee</button>
         </mat-card>
 
-
     </mat-drawer>
-
 
     <div class="example-sidenav-content">
 
-      <div class="example-container mat-elevation-z8">
-          <mat-table #table [dataSource]="dataSource">
-            <ng-container matColumnDef="select">
-              <mat-header-cell *matHeaderCellDef>
+        <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource">
+                <ng-container matColumnDef="select">
+                    <mat-header-cell *matHeaderCellDef>
 
-             </mat-header-cell>
-              <mat-cell *matCellDef="let row" (click)="selectRow(row)">
-              </mat-cell>
-            </ng-container>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row" (click)="selectRow(row)">
+                    </mat-cell>
+                </ng-container>
 
-            <!-- First Name Column -->
-            <ng-container matColumnDef="firstName">
-              <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
-            </ng-container>
+                <!-- First Name Column -->
+                <ng-container matColumnDef="firstName">
+                    <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+                </ng-container>
 
-            <!-- Last Name Column -->
-            <ng-container matColumnDef="lastName">
-              <mat-header-cell *matHeaderCellDef>Last Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
-            </ng-container>
+                <!-- Last Name Column -->
+                <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef>Last Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+                </ng-container>
 
-            <!-- Date of Birth Column -->
-            <ng-container matColumnDef="dateOfBirth">
-              <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </mat-cell>
-            </ng-container>
+                <!-- Date of Birth Column -->
+                <ng-container matColumnDef="dateOfBirth">
+                    <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </mat-cell>
+                </ng-container>
 
-            <!-- Income Column -->
-            <ng-container matColumnDef="income">
-              <mat-header-cell *matHeaderCellDef>Income </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.income}} </mat-cell>
-            </ng-container>
+                <!-- Income Column -->
+                <ng-container matColumnDef="income">
+                    <mat-header-cell *matHeaderCellDef>Income </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.income}} </mat-cell>
+                </ng-container>
 
-            <!-- Country Column -->
-            <ng-container matColumnDef="country">
-              <mat-header-cell *matHeaderCellDef>Country </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
-            </ng-container>
+                <!-- Country Column -->
+                <ng-container matColumnDef="country">
+                    <mat-header-cell *matHeaderCellDef>Country </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
+                </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-            <mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="selectRow(row)">
-                    <!-- (click)="selection.toggle(row)"> -->
-            </mat-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)">
+                </mat-row>
 
-          </mat-table>
+            </mat-table>
 
-          <mat-paginator #paginator
-          [pageSize]="10"
-          [pageSizeOptions]="[5, 10, 20]"
-          [showFirstLastButtons]="true">
-          </mat-paginator>
+            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+            </mat-paginator>
 
         </div>
 
-
     </div>
-  </mat-drawer-container>
-
-
+</mat-drawer-container>

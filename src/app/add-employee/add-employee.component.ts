@@ -64,9 +64,6 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit() {}
 
   addEmployee() {
-    // this.employees = this.employeeService.getEmployees();
-   // this.employees.subscribe(result => {console.log(result.length); this.employee.id = result.length + 1; });
-    // this.employee.id = 10;
     this.employeeService.addEmployee(this.employee);
     console.log('Add employee ' + JSON.stringify(this.employee));
 
