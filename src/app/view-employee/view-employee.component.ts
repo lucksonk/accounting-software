@@ -19,9 +19,8 @@ export class ViewEmployeeComponent implements OnInit {
             private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    const data = +this.route.snapshot.paramMap.get('employee');
-    console.log(' *** data for employee');
-    console.log(data);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.employeeService.getEmployee(id).subscribe(employee => this.employee = employee);
   }
 
 }

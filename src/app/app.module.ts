@@ -15,17 +15,18 @@ MatCheckboxModule,
 MatPaginatorModule,
 MatDatepickerModule,
 MatNativeDateModule,
+MatDividerModule,
 MatAutocompleteModule
 } from '@angular/material';
 
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
-import { SideMenuNavigationComponent } from './side-menu-navigation/side-menu-navigation.component';
-import { FooterComponent } from './footer/footer.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { InvoicingComponent } from './invoicing/invoicing.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
@@ -37,7 +38,9 @@ import { CountryService } from './country.service';
 import { EmployeeService } from './employee.service';
 import { SalaryThresholdValidatorDirective } from './salary-threshold-validator.directive';
 
-
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { LoggerService } from './logger.service';
 
 
 @NgModule({
@@ -45,8 +48,6 @@ import { SalaryThresholdValidatorDirective } from './salary-threshold-validator.
     AppComponent,
     NavigationBarComponent,
     TopNavigationComponent,
-    SideMenuNavigationComponent,
-    FooterComponent,
     PayrollComponent,
     InvoicingComponent,
     AddEmployeeComponent,
@@ -58,6 +59,9 @@ import { SalaryThresholdValidatorDirective } from './salary-threshold-validator.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatDividerModule,
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -72,10 +76,13 @@ import { SalaryThresholdValidatorDirective } from './salary-threshold-validator.
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
+    AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
-  providers: [CountryService, EmployeeService],
+  providers: [CountryService, EmployeeService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

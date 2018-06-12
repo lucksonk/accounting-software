@@ -14,8 +14,8 @@ export class SalaryThresholdValidatorDirective implements Validator {
 
     const isValid = this.validateSalary(numValue);
     const message = {
-      'years': {
-        'message': 'The year must be a valid number between '
+      'msg': {
+        'message': 'must be a valid number between '
       }
     };
     return isValid ? null : message;
@@ -24,7 +24,6 @@ export class SalaryThresholdValidatorDirective implements Validator {
   validateSalary(salary) {
     const thresholdUpperRange = 1000000;
     if (!isNaN(salary) && salary > 0 && !isNaN(salary) && salary <= thresholdUpperRange) {
-      console.log('** salary value ' + salary);
       return true;
     }
     return false;

@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import { Router } from '@angular/router';
-import { CountryService } from '../country.service';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 import { Country } from '../country';
@@ -15,11 +14,10 @@ import { Country } from '../country';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css'],
-  providers: [CountryService]
+  styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent implements OnInit {
-  employees:  Array<Employee> = [];
+  employees: Observable<Employee[]>;
 
   employee: Employee = {
     id: null,
@@ -37,15 +35,19 @@ export class AddEmployeeComponent implements OnInit {
     name: '',
     code: ''
   };
+
   countryCtrl: FormControl;
   filteredCountries: Observable<any[]>;
   countries: Array<Country> = [
     {name: 'South Africa', code: 'ZA'},
-    {name: 'Zimbabwe', code: 'ZW'}
+    {name: 'Zambia', code: 'ZM'},
+    {name: 'Zimbabwe', code: 'ZW'},
+    {name: 'United Kingdom', code: 'GB'},
+    {name: 'United States', code: 'US'}
   ];
 
   constructor(private router: Router,
-              private countryService: CountryService) {
+              private employeeService: EmployeeService) {
 
     this.countryCtrl = new FormControl();
     this.filteredCountries = this.countryCtrl.valueChanges
@@ -59,24 +61,16 @@ export class AddEmployeeComponent implements OnInit {
     return this.countries.filter(country =>
       country.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
-  ngOnInit() {
-    console.log('in constructor of add employee ***');
-    this.countryService.getCountries().subscribe(data => {
-      console.log('countries data');
-      this.countries = data;
-      console.log(JSON.stringify(data));
-    });
-    console.log('countries length ' + this.countries.length);
-  }
-
-  btnClick= function () {
-    this.router.navigateByUrl('/payroll');
-};
+  ngOnInit() {}
 
   addEmployee() {
-    console.log('Submitted add employee 2');
-    this.employees.unshift(this.employee);
-    console.log(JSON.stringify(this.employees));
+    // this.employees = this.employeeService.getEmployees();
+   // this.employees.subscribe(result => {console.log(result.length); this.employee.id = result.length + 1; });
+    // this.employee.id = 10;
+    this.employeeService.addEmployee(this.employee);
+    console.log('Add employee ' + JSON.stringify(this.employee));
+
+   this.router.navigateByUrl('/payroll');
 
     this.employee = {
       id: null,
