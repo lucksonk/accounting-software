@@ -10,10 +10,9 @@ export class CountryService {
   constructor(private http: HttpClient) {
     this.getCountries().subscribe(data => {
     });
-}
+  }
 
-public getCountries(): Observable<any> {
+  public getCountries(): Observable<any> {
     return this.http.get('./assets/json/countries.json');
-}
-
+  }
 }

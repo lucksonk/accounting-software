@@ -22,6 +22,7 @@ export class AddEmployeeComponent implements OnInit {
   employees:  Array<Employee> = [];
 
   employee: Employee = {
+    id: null,
     firstName: '',
     lastName: '',
     dateOfBirth: '',
@@ -78,6 +79,7 @@ export class AddEmployeeComponent implements OnInit {
     console.log(JSON.stringify(this.employees));
 
     this.employee = {
+      id: null,
       firstName: '',
       lastName: '',
       dateOfBirth: '',
