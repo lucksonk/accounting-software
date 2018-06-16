@@ -1,0 +1,18 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/payments" (click)="onPaymentsView()" *ngIf="payrollView">
+      <mat-icon>payment</mat-icon>
+      <span class="nav-caption">Payments</span>
+    </a>
+    <a mat-list-item routerLink="/employee" (click)="viewEmployeeManagement()" *ngIf="payrollView">
+      <mat-icon>person_add</mat-icon>
+      <span class="nav-caption">Employee Management</span>
+    </a>
+    <a mat-list-item routerLink="/invoicing" (click)="onClose()" *ngIf="!payrollView">
+      <mat-icon>input</mat-icon>
+      <span class="nav-caption">Manage Invoices</span>
+    </a>
+    <a mat-list-item routerLink="/quotation" (click)="onClose()" *ngIf="!payrollView">
+      <mat-icon>subject</mat-icon>
+      <span class="nav-caption">Manage Quotations</span>
+    </a>
+  </mat-nav-list>

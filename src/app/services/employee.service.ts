@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs';
 import { of } from 'rxjs/observable/of';
-import { Employee } from './employee';
+
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoggerService } from './logger.service';
+import { Employee } from '../components/employee/employee';
 
 
 const httpOptions = {
@@ -15,17 +18,26 @@ const httpOptions = {
 @Injectable()
 export class EmployeeService {
 
-  private employeeUrl  = 'api/employee';
+  private employeeUrl  = 'api/employees';
+
+
+  private employeePayrollList = new BehaviorSubject<Employee[]>([]);
+  employees = this.employeePayrollList.asObservable();
 
   constructor(private http: HttpClient,
               private loggerService: LoggerService) {}
 
   /** GET List of Employees from the server */
   getEmployees (): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.employeeUrl)
+     return this.http.get<Employee[]>(this.employeeUrl)
                     .pipe(
+                      tap(employeez => {console.log(`fetched employees`); this.employeePayrollList.next(employeez); }  ),
                       catchError(this.loggerService.handleError('getEmployees', []))
                     );
+  }
+
+  getEmployeesOnPayroll(): Observable<Employee[]>  {
+    return this.getEmployees();
   }
 
   /** GET Employee by id. Will 404 if id not found */
@@ -38,12 +50,14 @@ getEmployee(id: number): Observable<Employee> {
 }
 
   /** POST: add a new Employee to the server */
-  addEmployee (employee: Employee): Observable<Employee> {
+   addEmployee (employee: Employee) {
     console.log('in add employee service');
     console.log(JSON.stringify(employee));
-    return this.http.post<Employee>(this.employeeUrl, employee, httpOptions).pipe(
-      tap((newEmployee: Employee) => console.log(`added employee w/ id=${newEmployee.id}`)),
-      catchError(this.loggerService.handleError<Employee>('addEmployee'))
-    );
+    //this.getEmployeesOnPayroll().subscribe(employees => );
+
+  // this.employeePayrollList.next(employee);
+
   }
+
+
 }

@@ -2,52 +2,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HttpClientModule } from '@angular/common/http';
-import {
-MatSidenavModule,
-MatToolbarModule,
-MatTooltipModule,
-MatButtonModule,
-MatButtonToggleModule,
-MatTableModule,
-MatCheckboxModule,
-MatPaginatorModule,
-MatDatepickerModule,
-MatNativeDateModule,
-MatDividerModule,
-MatAutocompleteModule
-} from '@angular/material';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+//import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 import { AppComponent } from './app.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { TopNavigationComponent } from './top-navigation/top-navigation.component';
-import { PayrollComponent } from './payroll/payroll.component';
-import { InvoicingComponent } from './invoicing/invoicing.component';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ViewEmployeeComponent } from './view-employee/view-employee.component';
-import { CountryService } from './country.service';
-import { EmployeeService } from './employee.service';
-import { SalaryThresholdValidatorDirective } from './salary-threshold-validator.directive';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-import { LoggerService } from './logger.service';
+import { MaterialModule } from './material.module';
+import { SideNavigationComponent } from './components/navigation/side-navigation/side-navigation.component';
+import { PayrollComponent } from './components/payroll/payroll.component';
+import { AddEmployeeComponent } from './components/employee/add-employee/add-employee.component';
+import { ViewEmployeeComponent } from './components/employee/view-employee/view-employee.component';
+import { SalaryThresholdValidatorDirective } from './directives/salary-threshold-validator.directive';
+import { InvoicingComponent } from './components/invoicing/invoicing.component';
+import { InMemoryDataService } from './services/in-memory-data.service';
+
+import { EmployeeService } from './services/employee.service';
+import { DataService} from './services/data.service';
+import { LoggerService } from './services/logger.service';
+import { HeaderComponent } from './components/navigation/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationBarComponent,
-    TopNavigationComponent,
+    HeaderComponent,
+    SideNavigationComponent,
     PayrollComponent,
     InvoicingComponent,
     AddEmployeeComponent,
@@ -59,30 +46,17 @@ import { LoggerService } from './logger.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDividerModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatInputModule,
+    MaterialModule,
+    AppRoutingModule,
+    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatTableModule,
-    MatCheckboxModule,
-    MatPaginatorModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatAutocompleteModule,
-    AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [CountryService, EmployeeService, LoggerService],
+  providers: [EmployeeService, LoggerService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

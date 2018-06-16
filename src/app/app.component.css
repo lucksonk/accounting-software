@@ -1,12 +1,9 @@
-h1 {
-    font-size: 1.2em;
-    color: #999;
-    margin-bottom: 0;
-  }
-  h2 {
-    font-size: 2em;
-    margin-top: 0;
-    padding-top: 0;
-  }
-  
-  
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 250px;
+  top: 65px;
+}
+
