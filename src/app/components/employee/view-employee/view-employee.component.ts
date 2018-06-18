@@ -20,7 +20,7 @@ export class ViewEmployeeComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.employeeService.getEmployee(id).subscribe(employee => this.employee = employee);
+    this.employee = this.employeeService.getEmployee(id);
   }
 
 }

@@ -24,7 +24,7 @@ export class AddEmployeeComponent implements OnInit {
     id: null,
     firstName: '',
     lastName: '',
-    dateOfBirth: '',
+    dateOfBirth: null,
     income: null,
     country: ''
   };
@@ -69,7 +69,7 @@ export class AddEmployeeComponent implements OnInit {
       id: null,
       firstName: '',
       lastName: '',
-      dateOfBirth: '',
+      dateOfBirth: null,
       income: null,
       country: ''
     };

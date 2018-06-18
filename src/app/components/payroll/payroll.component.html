@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <section>
+    <section *ngIf="employees.length > 0">
     <mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>

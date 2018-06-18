@@ -20,44 +20,34 @@ export class EmployeeService {
 
   private employeeUrl  = 'api/employees';
 
-
   private employeePayrollList = new BehaviorSubject<Employee[]>([]);
   employees = this.employeePayrollList.asObservable();
+
+  private employeeList: Employee[] = [];
 
   constructor(private http: HttpClient,
               private loggerService: LoggerService) {}
 
-  /** GET List of Employees from the server */
-  getEmployees (): Observable<Employee[]> {
-     return this.http.get<Employee[]>(this.employeeUrl)
-                    .pipe(
-                      tap(employeez => {console.log(`fetched employees`); this.employeePayrollList.next(employeez); }  ),
-                      catchError(this.loggerService.handleError('getEmployees', []))
-                    );
+  getEmployeesOnPayroll() {
+    return this.employeeList;
   }
 
-  getEmployeesOnPayroll(): Observable<Employee[]>  {
-    return this.getEmployees();
+  getEmployee(id: number) {
+    var i : any;
+
+    for (i in this.employeeList) {
+      if (this.employeeList[i].id === id) {
+        return this.employeeList[i];
+      }
+    }
+
   }
 
-  /** GET Employee by id. Will 404 if id not found */
-getEmployee(id: number): Observable<Employee> {
-  const url = `${this.employeeUrl}/${id}`;
-  return this.http.get<Employee>(url).pipe(
-    tap(_ => console.log(`fetched employee id=${id}`)),
-    catchError(this.loggerService.handleError<Employee>(`getEmployee id=${id}`))
-  );
-}
-
-  /** POST: add a new Employee to the server */
-   addEmployee (employee: Employee) {
+  addEmployee (employee: Employee): void {
     console.log('in add employee service');
     console.log(JSON.stringify(employee));
-    //this.getEmployeesOnPayroll().subscribe(employees => );
-
-  // this.employeePayrollList.next(employee);
-
+    employee.id = (this.employeeList.length + 1);
+    this.employeeList.push(employee);
   }
-
 
 }

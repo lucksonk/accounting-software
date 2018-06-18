@@ -23,7 +23,7 @@ export class PayrollComponent implements OnInit , AfterViewInit   {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  employees: Employee[];
+  employees: Employee[] = [];
 
   constructor(private router: Router,
               private employeeService: EmployeeService) {}
@@ -33,8 +33,8 @@ export class PayrollComponent implements OnInit , AfterViewInit   {
   }
 
   getEmployeesOnPayroll(): void {
-    this.employeeService.getEmployeesOnPayroll()
-    .subscribe(employees => this.dataSource.data = employees);
+    this.employees = this.employeeService.getEmployeesOnPayroll();
+    this.dataSource.data = this.employees;
   }
 
    ngAfterViewInit() {
@@ -46,7 +46,6 @@ export class PayrollComponent implements OnInit , AfterViewInit   {
      this.dataSource.filter = filterValue.trim().toLowerCase();
    }
 
-
   selectRow(row) {
     console.log(row);
     this.router.navigateByUrl('/view-employee/' + row.id);
@@ -54,6 +53,6 @@ export class PayrollComponent implements OnInit , AfterViewInit   {
 
   viewAddEmployee = function () {
     this.router.navigateByUrl('/add-employee');
-};
+  };
 
 }

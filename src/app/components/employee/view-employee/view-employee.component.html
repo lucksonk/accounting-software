@@ -11,7 +11,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Date of Birth" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth">
+            <input matInput placeholder="Date of Birth" [(ngModel)]="employee.dateOfBirth" name="dateOfBirth | date: 'yyyy-MM-dd'">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
