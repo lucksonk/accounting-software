@@ -13,27 +13,27 @@
     <mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.firstName }}</mat-cell>
+        <mat-cell *matCellDef="let element" fxLayoutAlign="left">{{ element.firstName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.lastName }}</mat-cell>
+        <mat-cell *matCellDef="let element" fxLayoutAlign="left">{{ element.lastName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="dateOfBirth">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.dateOfBirth | date: 'yyyy-MM-dd'}}</mat-cell>
+        <mat-cell *matCellDef="let element" fxLayoutAlign="left">{{ element.dateOfBirth}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="income">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Income</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.income | number }}</mat-cell>
+        <mat-cell *matCellDef="let element" fxLayoutAlign="left">{{ element.income | number }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="country">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.country }}</mat-cell>
+        <mat-cell *matCellDef="let element" fxLayoutAlign="left">{{ element.country }}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -43,4 +43,9 @@
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 20]">
     </mat-paginator>
   </section>
+
+  <section *ngIf="employees.length  == 0" >
+    No data to display.
+  </section>
+
 </div>

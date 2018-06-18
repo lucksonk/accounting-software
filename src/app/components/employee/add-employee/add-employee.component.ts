@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Employee } from '../employee';
 import { Country } from '../../country/country';
 import { EmployeeService } from '../../../services/employee.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -23,13 +24,12 @@ export class AddEmployeeComponent implements OnInit {
     id: null,
     firstName: '',
     lastName: '',
-    dateOfBirth: null,
+    dateOfBirth: '',
     income: null,
     country: ''
   };
 
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
+  date = new FormControl(moment().format('YYYY-MM-DD'));
 
   country: Country = {
     name: '',
@@ -59,16 +59,15 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   addEmployee() {
+    this.employee.dateOfBirth = moment().format('YYYY-MM-DD');
     this.employeeService.addEmployee(this.employee);
-    console.log('Add employee ' + JSON.stringify(this.employee));
-
-   this.router.navigateByUrl('/payments');
+    this.router.navigateByUrl('/payments');
 
     this.employee = {
       id: null,
       firstName: '',
       lastName: '',
-      dateOfBirth: null,
+      dateOfBirth: '',
       income: null,
       country: ''
     };
