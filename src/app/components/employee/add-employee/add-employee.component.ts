@@ -18,7 +18,6 @@ import { EmployeeService } from '../../../services/employee.service';
   styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent implements OnInit {
-  employees: Observable<Employee[]>;
 
   employee: Employee = {
     id: null,
