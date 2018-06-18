@@ -1,7 +1,7 @@
 <div class="payroll" fxLayout="column"
                   fxLayoutGap.gt-md="20px"  fxFlex="100%">
   <div fxLayoutAlign="center center">
-      <mat-form-field fxFlex="40%">
+      <mat-form-field fxFlex="40%" *ngIf="employees.length > 0">
         <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" >
