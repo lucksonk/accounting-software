@@ -33,7 +33,7 @@ export class EmployeeService {
   }
 
   getEmployee(id: number) {
-    var i : any;
+    let i: any;
 
     for (i in this.employeeList) {
       if (this.employeeList[i].id === id) {
@@ -44,8 +44,6 @@ export class EmployeeService {
   }
 
   addEmployee (employee: Employee): void {
-    console.log('in add employee service');
-    console.log(JSON.stringify(employee));
     employee.id = (this.employeeList.length + 1);
     this.employeeList.push(employee);
   }

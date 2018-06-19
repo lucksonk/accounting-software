@@ -16,9 +16,7 @@ import { Router } from '@angular/router';
 })
 export class SideNavigationComponent implements OnInit, OnDestroy {
 
-   @Output() closeSidenav = new EventEmitter<void>();
-
-
+  @Output() closeSidenav = new EventEmitter<void>();
   payrollView = true;
 
   constructor(private dataService: DataService,
@@ -42,13 +40,6 @@ export class SideNavigationComponent implements OnInit, OnDestroy {
     this.onClose();
   }
 
-  onLogout() {
-    this.onClose();
-  }
-
   ngOnDestroy() {
   }
-
-
-
 }

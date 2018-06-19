@@ -23,7 +23,7 @@ export class SalaryThresholdValidatorDirective implements Validator {
 
   validateSalary(salary) {
     const thresholdUpperRange = 1000000;
-    if (!isNaN(salary) && salary > 0 && !isNaN(salary) && salary <= thresholdUpperRange) {
+    if (!isNaN(salary) && salary > 0 && salary <= thresholdUpperRange) {
       return true;
     }
     return false;

@@ -8,8 +8,8 @@ import { DataService } from '../../../services/data.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Output() sidenavToggle = new EventEmitter<void>();
 
+  @Output() sidenavToggle = new EventEmitter<void>();
   view = true;
 
   constructor(private dataService: DataService) { }

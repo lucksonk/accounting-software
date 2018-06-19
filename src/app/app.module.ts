@@ -7,7 +7,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-//import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
